@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">To-Do List</h1>
+<form method="POST" action="{{ url_for('add_todo')}}" class="flex mb-4">
+    {{ form.hidden_tag() }}
+    {{ form.task.label(class='sr-only') }}
+    {{ form.task(class='border border-gray-300 p-2 flex-1 rounded-l-md') }}
+    {{ form.submit(class='bg-blue-500 text-white p-2 rounded-r-md') }}
+</form>
+<ul class="list-disc p-5">
+    {% for todo in todos %}
+        <li class="py-1">{{ todo.task }}</li>
+    {% endfor %}
+</ul>
+
+<div class="mt-4">
+    <a href="{{ url_for('logout') }}" class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Logout
+    </a>
+</div>
+
+{% endblock content %}
